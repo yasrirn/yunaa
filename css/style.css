@@ -1,0 +1,575 @@
+/* ======================================================================
+   STYLE.CSS
+   ----------------------------------------------------------------------
+   Semua warna & font ada di variabel :root di paling atas.
+   Ganti nilai hex di sana kalau mau ubah tema warna website.
+   ====================================================================== */
+
+:root{
+  --cream:#FFF7F1;
+  --blush:#FFD9E4;
+  --blush-2:#FFC2D6;
+  --rose:#E8748C;
+  --rose-deep:#C24E68;
+  --plum:#3E2244;
+  --plum-2:#5A3466;
+  --valorant:#FF4655;
+  --lavender:#B9A6FF;
+  --gold:#FFC857;
+  --paper:#FFFDF9;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Nunito', sans-serif;
+  background:var(--cream);
+  color:var(--plum);
+  overflow-x:hidden;
+  position:relative;
+}
+h1,h2,h3,.display{font-family:'Fredoka', sans-serif;}
+.script{font-family:'Caveat', cursive;}
+.pixel{font-family:'Press Start 2P', cursive;}
+
+/* ---------- scroll progress bar ---------- */
+#scrollProgress{
+  position:fixed; top:0; left:0; height:4px; width:0%; z-index:90;
+  background:linear-gradient(90deg,var(--rose),var(--gold),var(--rose));
+  background-size:200% auto;
+  animation:progressShimmer 3s linear infinite;
+  box-shadow:0 0 10px rgba(232,116,140,.6);
+  transition:width .12s linear;
+}
+@keyframes progressShimmer{0%{background-position:0% center;}100%{background-position:200% center;}}
+
+/* ---------- click sparkle trail ---------- */
+#sparkleLayer{position:fixed; inset:0; pointer-events:none; z-index:65; overflow:hidden;}
+.click-sparkle{
+  position:absolute; width:6px; height:6px; border-radius:50%;
+  background:var(--gold); box-shadow:0 0 8px 2px rgba(255,200,87,.7);
+  animation:sparkleOut .7s ease-out forwards;
+}
+@keyframes sparkleOut{
+  0%{transform:translate(0,0) scale(1); opacity:1;}
+  100%{transform:translate(var(--sx),var(--sy)) scale(0); opacity:0;}
+}
+
+/* ---------- floating ambient background ---------- */
+#ambient{
+  position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+}
+.amb-heart{
+  position:absolute; bottom:-10%; font-size:22px; opacity:.35;
+  animation:floatUp linear infinite;
+  color:var(--rose);
+  filter:drop-shadow(0 0 6px rgba(232,116,140,.4));
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) translateX(0) rotate(0deg); opacity:0;}
+  10%{opacity:.5;}
+  90%{opacity:.4;}
+  100%{transform:translateY(-115vh) translateX(20px) rotate(25deg); opacity:0;}
+}
+
+/* ---------- gate screen ---------- */
+#gate{
+  position:fixed; inset:0; z-index:50;
+  background:linear-gradient(160deg,var(--blush) 0%, var(--cream) 55%, var(--blush-2) 100%);
+  display:flex; align-items:center; justify-content:center; flex-direction:column;
+  text-align:center; padding:24px;
+  transition:opacity 1s ease, visibility 1s ease;
+}
+#gate.hidden{opacity:0; visibility:hidden; pointer-events:none;}
+#gate .envelope{
+  width:110px; height:80px; margin:0 auto 28px; position:relative; cursor:pointer;
+  animation:bob 3s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.envelope .body-e{
+  position:absolute; inset:0; background:var(--paper); border-radius:8px;
+  box-shadow:0 14px 30px rgba(90,52,102,.25); border:2px solid var(--rose-deep);
+}
+.envelope .flap{
+  position:absolute; top:-2px; left:-2px; right:-2px; height:44px;
+  background:var(--blush-2); clip-path:polygon(0 0,100% 0,50% 90%);
+  border-radius:8px 8px 0 0; border:2px solid var(--rose-deep); border-bottom:none;
+}
+.envelope .heart-seal{
+  position:absolute; top:38%; left:50%; transform:translate(-50%,-50%);
+  font-size:20px; color:var(--rose-deep);
+}
+#gate h1{font-size:clamp(1.6rem,5vw,2.4rem); color:var(--rose-deep); margin-bottom:8px;}
+#gate p{font-family:'Caveat',cursive; font-size:1.3rem; color:var(--plum-2); max-width:360px; margin-bottom:26px;}
+#openBtn{
+  font-family:'Fredoka',sans-serif; font-weight:600; font-size:1rem;
+  background:var(--rose); color:#fff; border:none; padding:14px 34px;
+  border-radius:40px; cursor:pointer; box-shadow:0 10px 22px rgba(232,116,140,.45);
+  transition:transform .25s ease, box-shadow .25s ease;
+  letter-spacing:.3px;
+}
+#openBtn:hover{transform:translateY(-3px) scale(1.03); box-shadow:0 14px 26px rgba(232,116,140,.55);}
+#openBtn:active{transform:translateY(0) scale(.97);}
+.gate-hint{margin-top:16px; font-size:.75rem; color:var(--plum-2); opacity:.6;}
+
+/* ---------- music toggle ---------- */
+#musicToggle{
+  position:fixed; top:18px; right:18px; z-index:40;
+  width:52px; height:52px; border-radius:50%; border:none;
+  background:rgba(255,255,255,.75); backdrop-filter:blur(6px);
+  box-shadow:0 6px 18px rgba(90,52,102,.18);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:20px; transition:transform .2s ease;
+}
+#musicToggle:hover{transform:scale(1.08);}
+#musicToggle .bar{width:3px; height:10px; background:var(--rose-deep); margin:0 1px; display:inline-block; border-radius:2px; animation:eq 1s ease-in-out infinite;}
+#musicToggle .bar:nth-child(2){animation-delay:.2s;}
+#musicToggle .bar:nth-child(3){animation-delay:.4s;}
+#musicToggle.muted .bar{animation-play-state:paused; height:4px;}
+@keyframes eq{0%,100%{height:6px;}50%{height:16px;}}
+
+main{position:relative; z-index:1;}
+section{position:relative; padding:90px 20px; max-width:1000px; margin:0 auto;}
+
+/* ---------- hero ---------- */
+#hero{
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding-top:60px;
+}
+.eyebrow{
+  font-family:'Press Start 2P',cursive; font-size:.55rem; letter-spacing:2px;
+  color:var(--rose-deep); background:var(--blush); padding:8px 14px; border-radius:20px;
+  display:inline-block; margin-bottom:22px; opacity:0; animation:fadeUp .8s ease forwards .2s, tagPulse 2.6s ease-in-out infinite 1.2s;
+}
+@keyframes tagPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(232,116,140,.45);}
+  50%{box-shadow:0 0 0 8px rgba(232,116,140,0);}
+}
+#hero h1{
+  font-size:clamp(2.4rem,8vw,4.4rem); color:var(--plum); line-height:1.05;
+  opacity:0; animation:fadeUp .9s ease forwards .4s;
+}
+#hero h1 span{
+  position:relative;
+  background:linear-gradient(90deg,var(--rose) 0%, var(--gold) 45%, var(--rose) 90%);
+  background-size:220% auto;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:shimmerText 4s linear infinite 1.3s;
+}
+@keyframes shimmerText{0%{background-position:0% center;}100%{background-position:220% center;}}
+#hero .sub{
+  font-family:'Caveat',cursive; font-size:clamp(1.3rem,3vw,1.8rem); color:var(--plum-2);
+  margin-top:18px; max-width:520px; opacity:0; animation:fadeUp .9s ease forwards .7s;
+}
+@keyframes fadeUp{from{opacity:0; transform:translateY(24px);} to{opacity:1; transform:translateY(0);}}
+.scroll-cue{
+  margin-top:56px; font-size:.8rem; color:var(--plum-2); opacity:0;
+  animation:fadeUp .9s ease forwards 1.1s;
+}
+.scroll-cue .arrow{display:block; margin:8px auto 0; width:10px; height:10px; border-right:2px solid var(--rose); border-bottom:2px solid var(--rose); transform:rotate(45deg); animation:arrowBounce 1.6s ease-in-out infinite;}
+@keyframes arrowBounce{0%,100%{transform:rotate(45deg) translate(0,0);}50%{transform:rotate(45deg) translate(4px,4px);}}
+
+/* sparkle kecil melayang di sekitar hero */
+.hero-sparkle{
+  position:absolute; font-size:16px; color:var(--gold); opacity:0;
+  animation:sparkleTwinkle 3.4s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes sparkleTwinkle{
+  0%,100%{opacity:0; transform:scale(.4) rotate(0deg);}
+  50%{opacity:.9; transform:scale(1) rotate(90deg);}
+}
+
+/* ---------- section headers ---------- */
+.sec-head{text-align:center; margin-bottom:52px;}
+.sec-head .tag{font-family:'Press Start 2P',cursive; font-size:.5rem; color:var(--rose-deep); letter-spacing:2px;}
+.sec-head h2{font-size:clamp(1.8rem,5vw,2.6rem); margin-top:10px; color:var(--plum);}
+.sec-head p{font-family:'Caveat',cursive; font-size:1.2rem; color:var(--plum-2); margin-top:6px;}
+
+.reveal{opacity:0; transform:translateY(36px); transition:opacity .8s ease, transform .8s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+
+/* ==========================================================
+   GALERI FOTO — "papan kenangan" (scrapbook corkboard)
+   Layout tetap MASONRY (frame ikut bentuk asli foto, tidak ada crop),
+   tapi tiap foto didandani beda-beda: ada yang "ditempel washi tape",
+   ada yang "dipin", rotasi & jarak antar foto dibikin acak biar berasa
+   ditempel tangan, bukan grid kaku. Jumlah & urutan foto ada di
+   js/photos-config.js — rotasi/dekorasi dihitung otomatis dari situ.
+   ========================================================== */
+#gallery{
+  position:relative;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(194,78,104,.09) 1.4px, transparent 0);
+  background-size:22px 22px;
+  border-radius:28px;
+}
+#gallery-grid{
+  column-count:4; column-gap:26px; padding:6px 2px;
+}
+.polaroid{
+  display:inline-block; width:100%;
+  break-inside:avoid;
+  background:var(--paper); padding:10px 10px 10px; border-radius:3px;
+  box-shadow:0 12px 24px rgba(90,52,102,.18);
+  cursor:pointer; position:relative;
+  opacity:0; transform:translateY(50px) scale(.9) rotate(var(--rot,0deg));
+  transition:transform .7s cubic-bezier(.2,.8,.3,1.2), box-shadow .35s ease, opacity .7s ease, z-index 0s;
+  transition-delay:var(--stagger,0ms);
+}
+.polaroid.in{opacity:1; transform:translateY(0) scale(1) rotate(var(--rot,0deg));}
+/* frame mengikuti bentuk asli foto -> tidak ada crop, tidak ada spasi kosong */
+.photo-frame{display:block; width:100%; border-radius:1px; overflow:hidden;}
+.photo-frame img{display:block; width:100%; height:auto; transition:transform .5s ease;}
+.polaroid:hover .photo-frame img{transform:scale(1.06);}
+.polaroid:hover{
+  transform:translateY(-10px) scale(1.06) rotate(0deg);
+  box-shadow:0 24px 40px rgba(90,52,102,.32); z-index:20;
+}
+.polaroid span.cap{
+  display:block; text-align:center; padding-top:12px;
+  font-family:'Caveat',cursive; font-size:1.05rem; color:var(--plum-2);
+}
+
+/* dekorasi: washi tape (garis-garis miring transparan) di pojok, goyang pelan idle */
+.polaroid.tape-tl::before, .polaroid.tape-tr::before{
+  content:""; position:absolute; top:-14px; width:64px; height:26px;
+  background:repeating-linear-gradient(135deg, rgba(255,255,255,.55) 0 6px, rgba(255,201,87,.55) 6px 12px);
+  box-shadow:0 2px 6px rgba(0,0,0,.12);
+  opacity:.9; z-index:2; border-radius:2px;
+  animation:tapeWiggle 4.5s ease-in-out infinite;
+}
+.polaroid.tape-tl::before{left:-16px; transform-origin:80% 20%; animation-name:tapeWiggleL;}
+.polaroid.tape-tr::before{right:-16px; transform-origin:20% 20%; animation-name:tapeWiggleR;}
+@keyframes tapeWiggleL{0%,100%{transform:rotate(-40deg);}50%{transform:rotate(-35deg);}}
+@keyframes tapeWiggleR{0%,100%{transform:rotate(40deg);}50%{transform:rotate(35deg);}}
+
+/* dekorasi: pin/jarum di atas tengah, "berdenyut" pelan */
+.polaroid.pin::after{
+  content:""; position:absolute; top:-9px; left:50%;
+  width:16px; height:16px; border-radius:50%; z-index:3;
+  background:radial-gradient(circle at 35% 30%, #fff, var(--rose) 45%, var(--rose-deep) 100%);
+  box-shadow:0 3px 6px rgba(0,0,0,.28);
+  animation:pinPulse 3.2s ease-in-out infinite;
+}
+@keyframes pinPulse{
+  0%,100%{transform:translateX(-50%) scale(1);}
+  50%{transform:translateX(-50%) scale(1.18);}
+}
+
+/* skala ukuran variatif supaya komposisi tidak seragam */
+.polaroid.size-sm{max-width:82%;}
+.polaroid.size-lg{max-width:100%;}
+.polaroid.size-md{max-width:92%;}
+
+@media (max-width:900px){
+  #gallery-grid{column-count:3;}
+}
+@media (max-width:720px){
+  #gallery{border-radius:20px;}
+  #gallery-grid{column-count:2; column-gap:16px; padding:16px 10px;}
+  .polaroid{max-width:100% !important; margin-bottom:16px;}
+}
+@media (max-width:420px){
+  #gallery-grid{column-count:1;}
+}
+
+/* lightbox (tampilan foto full saat di-klik) */
+#lightbox{
+  position:fixed; inset:0; background:rgba(62,34,68,.86); z-index:60;
+  display:flex; align-items:center; justify-content:center; padding:30px;
+  opacity:0; visibility:hidden; transition:opacity .3s ease, visibility .3s ease;
+}
+#lightbox.open{opacity:1; visibility:visible;}
+#lightbox img{max-width:min(88vw,520px); max-height:78vh; border-radius:10px; box-shadow:0 20px 50px rgba(0,0,0,.4); border:6px solid var(--paper); transform:scale(.9); transition:transform .3s ease;}
+#lightbox.open img{transform:scale(1);}
+#lightbox .close-lb{position:absolute; top:26px; right:30px; color:#fff; font-size:2rem; cursor:pointer; opacity:.8;}
+#lightbox .close-lb:hover{opacity:1;}
+
+/* ---------- letter ---------- */
+#letter{
+  background:var(--paper); border-radius:22px; padding:52px 46px;
+  box-shadow:0 20px 50px rgba(90,52,102,.15); position:relative;
+  border:1px solid rgba(232,116,140,.25);
+}
+#letter::before{
+  content:"\275D"; position:absolute; top:-8px; left:30px; font-size:5rem; color:var(--blush); font-family:Georgia,serif; opacity:.8;
+  animation:quoteFloat 4s ease-in-out infinite;
+}
+@keyframes quoteFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+#letter p{
+  font-size:1.08rem; line-height:1.95; margin-bottom:18px; color:var(--plum);
+  opacity:0; transform:translateY(22px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+#letter.in p:nth-of-type(1){transition-delay:.15s;}
+#letter.in p:nth-of-type(2){transition-delay:.35s;}
+#letter.in p:nth-of-type(3){transition-delay:.55s;}
+#letter.in p:nth-of-type(4){transition-delay:.75s;}
+#letter.in p{opacity:1; transform:translateY(0);}
+#letter p:last-of-type{margin-bottom:0;}
+#letter .signature{
+  margin-top:30px; text-align:right; font-family:'Caveat',cursive; font-size:2.1rem; color:var(--rose-deep);
+  opacity:0; transform:translateY(16px); transition:opacity .7s ease .95s, transform .7s ease .95s;
+}
+#letter.in .signature{opacity:1; transform:translateY(0);}
+#letter .signature small{display:block; font-family:'Nunito',sans-serif; font-size:.8rem; color:var(--plum-2); font-weight:600;}
+
+/* ---------- games ---------- */
+#games{position:relative;}
+.game-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+@media (max-width:800px){.game-grid{grid-template-columns:1fr;}}
+.gcard{
+  background:var(--plum); border-radius:18px; padding:0 0 26px; color:#fff; position:relative;
+  overflow:hidden; min-height:340px; display:flex; flex-direction:column;
+  box-shadow:0 16px 32px rgba(62,34,68,.35); cursor:default;
+  transition:transform .25s ease, box-shadow .3s ease;
+  transform-style:preserve-3d; will-change:transform;
+}
+.gcard:hover{transform:translateY(-6px); box-shadow:0 26px 46px rgba(62,34,68,.5);}
+.gcard .glow{
+  position:absolute; top:-40px; right:-40px; width:150px; height:150px; border-radius:50%;
+  filter:blur(10px); opacity:.55; animation:glowPulse 3.6s ease-in-out infinite;
+}
+@keyframes glowPulse{0%,100%{opacity:.4; transform:scale(1);}50%{opacity:.7; transform:scale(1.15);}}
+
+/* area ilustrasi tiap game -> karya orisinal, bukan logo resmi (menghindari hak cipta) */
+.art-wrap{
+  position:relative; width:100%; height:150px; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+  animation:artFloat 4s ease-in-out infinite;
+}
+@keyframes artFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.art-wrap svg{max-width:200px;}
+.gcard-body{padding:18px 24px 0; position:relative; z-index:2;}
+.gcard h3{font-size:1.25rem; margin-bottom:6px;}
+.gcard .tagline{font-family:'Press Start 2P',cursive; font-size:.5rem; letter-spacing:1px; opacity:.75; margin-bottom:10px; display:block;}
+.gcard p{font-size:.92rem; line-height:1.6; opacity:.9;}
+.gcard.valorant .glow{background:var(--valorant);}
+.gcard.roblox .glow{background:#e8748c;}
+.gcard.ml .glow{background:var(--lavender);}
+.agent-tags{display:flex; gap:8px; margin-top:14px;}
+.agent-tags span{
+  font-size:.7rem; font-weight:700; padding:5px 10px; border-radius:20px; background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
+  transition:transform .25s ease, background .25s ease;
+}
+.gcard:hover .agent-tags span{background:rgba(255,255,255,.24);}
+.gcard:hover .art-wrap svg{transform:scale(1.05);}
+.art-wrap svg{transition:transform .35s ease;}
+
+/* ---------- closing ---------- */
+#closing{text-align:center; padding-bottom:140px;}
+#closing h2{font-size:clamp(1.8rem,5vw,2.6rem); margin-bottom:14px;}
+#closing p.msg{font-family:'Caveat',cursive; font-size:1.5rem; max-width:520px; margin:0 auto 30px; color:var(--plum-2); line-height:1.5;}
+.heart-btn-wrap{position:relative; width:90px; height:90px; margin:0 auto;}
+.heart-btn-wrap::before, .heart-btn-wrap::after{
+  content:""; position:absolute; inset:0; border-radius:50%;
+  border:2px solid var(--rose); opacity:0;
+  animation:ripple 2.6s ease-out infinite;
+}
+.heart-btn-wrap::after{animation-delay:1.3s;}
+@keyframes ripple{
+  0%{transform:scale(1); opacity:.6;}
+  100%{transform:scale(1.7); opacity:0;}
+}
+#heartBtn{
+  width:90px; height:90px; border-radius:50%; border:none; background:var(--rose);
+  color:#fff; font-size:2.2rem; cursor:pointer; box-shadow:0 14px 30px rgba(232,116,140,.4);
+  transition:transform .2s ease;
+  position:relative; z-index:2;
+  animation:heartbeat 2.2s ease-in-out infinite;
+}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  15%{transform:scale(1.1);}
+  30%{transform:scale(1);}
+  45%{transform:scale(1.08);}
+  60%{transform:scale(1);}
+}
+#heartBtn:hover{transform:scale(1.15); animation-play-state:paused;}
+#heartBtn:active{transform:scale(.92);}
+#heartCount{margin-top:14px; font-size:.85rem; color:var(--plum-2); font-weight:700;}
+footer{
+  text-align:center; padding:34px 20px 46px; font-size:.85rem; color:var(--plum-2); opacity:.75;
+}
+footer .from{font-family:'Caveat',cursive; font-size:1.3rem; color:var(--rose-deep); display:block; margin-top:4px;}
+
+#popHearts{position:fixed; inset:0; pointer-events:none; z-index:70; overflow:hidden;}
+.pop{position:absolute; font-size:20px; color:var(--rose); animation:popUp 1.4s ease-out forwards;}
+@keyframes popUp{
+  0%{transform:translateY(0) scale(.6); opacity:1;}
+  100%{transform:translateY(-140px) scale(1.3); opacity:0;}
+}
+
+/* ================= BUKU TAMU / TINGGALKAN PESAN ================= */
+:root{
+  --note-pink:#FFE3ED;
+  --note-yellow:#FFF3C7;
+  --note-lavender:#EAE1FF;
+  --note-mint:#DFF5E8;
+  --note-peach:#FFE7D6;
+}
+#guestbook{padding-bottom:70px;}
+#messageForm{
+  max-width:560px; margin:0 auto 56px; background:var(--paper);
+  border-radius:20px; padding:30px 28px; box-shadow:0 18px 40px rgba(90,52,102,.16);
+  border:1px solid rgba(232,116,140,.2); position:relative;
+}
+.field-row{margin-bottom:16px; position:relative;}
+#msgName, #msgText{
+  width:100%; border:2px solid var(--blush); border-radius:12px; background:var(--cream);
+  font-family:'Nunito',sans-serif; color:var(--plum); padding:12px 14px; font-size:.95rem;
+  transition:border-color .25s ease, box-shadow .25s ease; resize:vertical;
+}
+#msgName:focus, #msgText:focus{
+  outline:none; border-color:var(--rose); box-shadow:0 0 0 4px rgba(232,116,140,.15);
+}
+.counter{
+  position:absolute; right:8px; bottom:-20px; font-size:.72rem; color:var(--plum-2); opacity:.6;
+}
+#msgSubmit{
+  width:100%; font-family:'Fredoka',sans-serif; font-weight:600; font-size:1rem;
+  background:var(--rose); color:#fff; border:none; padding:14px 20px; border-radius:14px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px;
+  box-shadow:0 10px 22px rgba(232,116,140,.4); transition:transform .2s ease, box-shadow .2s ease;
+  margin-top:6px;
+}
+#msgSubmit:hover{transform:translateY(-3px); box-shadow:0 14px 26px rgba(232,116,140,.5);}
+#msgSubmit:active{transform:translateY(0) scale(.97);}
+#msgSubmit .btn-icon{display:inline-block; animation:iconFloat 3s ease-in-out infinite;}
+#msgSubmit.sent{animation:sentPulse .5s ease;}
+@keyframes sentPulse{0%{transform:scale(1);}40%{transform:scale(.93);}100%{transform:scale(1);}}
+
+#notesWall{
+  display:flex; flex-wrap:wrap; gap:22px; justify-content:center; max-width:900px; margin:0 auto;
+}
+.notes-empty{
+  text-align:center; font-family:'Caveat',cursive; font-size:1.3rem; color:var(--plum-2); opacity:.6;
+}
+.note{
+  width:210px; min-height:150px; padding:20px 18px 44px; border-radius:4px; position:relative;
+  box-shadow:0 10px 20px rgba(90,52,102,.18); cursor:default;
+  font-family:'Caveat',cursive; font-size:1.15rem; line-height:1.4; color:var(--plum);
+  opacity:0; transform:translateY(30px) scale(.85) rotate(var(--nrot,0deg));
+  animation:noteIn .6s cubic-bezier(.2,.8,.3,1.2) forwards;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.note:hover{
+  transform:translateY(-6px) scale(1.04) rotate(0deg) !important;
+  box-shadow:0 18px 32px rgba(90,52,102,.3); z-index:5;
+}
+@keyframes noteIn{
+  0%{opacity:0; transform:translateY(30px) scale(.8) rotate(var(--nrot,0deg));}
+  100%{opacity:1; transform:translateY(0) scale(1) rotate(var(--nrot,0deg));}
+}
+.note::before{
+  content:""; position:absolute; top:-12px; left:50%; transform:translateX(-50%) rotate(-3deg);
+  width:56px; height:22px;
+  background:repeating-linear-gradient(135deg, rgba(255,255,255,.6) 0 6px, rgba(255,201,87,.55) 6px 12px);
+  box-shadow:0 2px 5px rgba(0,0,0,.1); border-radius:2px; opacity:.9;
+}
+.note .note-text{display:block; word-wrap:break-word;}
+.note .note-meta{
+  position:absolute; left:18px; bottom:14px; right:18px;
+  font-family:'Nunito',sans-serif; font-size:.72rem; color:var(--plum-2); opacity:.65;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.note .note-del{
+  position:absolute; top:8px; right:10px; background:none; border:none; cursor:pointer;
+  font-size:.85rem; color:var(--plum-2); opacity:.35; transition:opacity .2s ease, transform .2s ease;
+}
+.note .note-del:hover{opacity:.9; transform:scale(1.15);}
+.note.removing{animation:noteOut .35s ease forwards;}
+@keyframes noteOut{to{opacity:0; transform:translateY(-14px) scale(.8) rotate(var(--nrot,0deg));}}
+
+.note.c-pink{background:var(--note-pink);}
+.note.c-yellow{background:var(--note-yellow);}
+.note.c-lavender{background:var(--note-lavender);}
+.note.c-mint{background:var(--note-mint);}
+.note.c-peach{background:var(--note-peach);}
+
+@media (max-width:600px){
+  #messageForm{padding:24px 18px;}
+  .note{width:100%; max-width:280px;}
+}
+
+/* ================= TEMPEL FOTO KAMU (upload interaktif) ================= */
+#photo-post{padding-bottom:20px;}
+#uploadZone{
+  max-width:520px; margin:0 auto 26px; padding:38px 24px;
+  border:2.5px dashed var(--blush-2); border-radius:22px; background:var(--paper);
+  text-align:center; cursor:pointer; color:var(--rose-deep);
+  transition:border-color .25s ease, background .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+#uploadZone:hover, #uploadZone:focus-visible{
+  border-color:var(--rose); background:var(--blush); transform:translateY(-3px);
+  box-shadow:0 16px 30px rgba(90,52,102,.16); outline:none;
+}
+#uploadZone.dragover{
+  border-color:var(--gold); background:var(--note-yellow); transform:scale(1.02);
+}
+.upload-icon{display:inline-flex; margin-bottom:10px; animation:uploadBob 2.6s ease-in-out infinite;}
+@keyframes uploadBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+.upload-title{font-family:'Fredoka',sans-serif; font-weight:600; color:var(--plum); font-size:1.02rem;}
+.upload-sub{font-size:.8rem; color:var(--plum-2); opacity:.7; margin-top:4px;}
+
+#uploadPreview{
+  max-width:340px; margin:0 auto 40px; background:var(--paper); border-radius:16px;
+  padding:16px; box-shadow:0 16px 34px rgba(90,52,102,.2);
+  display:none; opacity:0; transform:translateY(16px) scale(.96);
+  transition:opacity .35s ease, transform .35s ease;
+}
+#uploadPreview.show{display:block; opacity:1; transform:translateY(0) scale(1);}
+.preview-frame{width:100%; border-radius:10px; overflow:hidden; background:#efe4de; margin-bottom:12px;}
+.preview-frame img{width:100%; max-height:280px; object-fit:contain; display:block;}
+#postCaption{
+  width:100%; border:2px solid var(--blush); border-radius:10px; background:var(--cream);
+  font-family:'Nunito',sans-serif; font-size:.9rem; color:var(--plum); padding:10px 12px;
+  margin-bottom:12px; transition:border-color .2s ease;
+}
+#postCaption:focus{outline:none; border-color:var(--rose);}
+.preview-actions{display:flex; gap:10px;}
+.btn-ghost, .btn-solid{
+  flex:1; border:none; border-radius:12px; padding:11px 12px; font-family:'Fredoka',sans-serif;
+  font-weight:600; font-size:.88rem; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease;
+}
+.btn-ghost{background:var(--cream); color:var(--plum-2); border:2px solid var(--blush);}
+.btn-ghost:hover{background:var(--blush);}
+.btn-solid{background:var(--rose); color:#fff; box-shadow:0 8px 18px rgba(232,116,140,.4);}
+.btn-solid:hover{transform:translateY(-2px); box-shadow:0 12px 22px rgba(232,116,140,.5);}
+.btn-solid:active, .btn-ghost:active{transform:scale(.96);}
+
+#postsWall{
+  column-count:4; column-gap:26px; padding:6px 2px; max-width:900px; margin:0 auto;
+}
+@media (max-width:900px){#postsWall{column-count:3;}}
+@media (max-width:720px){#postsWall{column-count:2; column-gap:16px;}}
+@media (max-width:420px){#postsWall{column-count:1;}}
+
+/* tombol hapus dipakai ulang di foto galeri hasil upload pengunjung */
+.photo-del{
+  position:absolute; top:8px; right:8px; z-index:6; width:26px; height:26px; border-radius:50%;
+  border:none; background:rgba(62,34,68,.55); color:#fff; font-size:.8rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; opacity:0;
+  transition:opacity .2s ease, transform .2s ease, background .2s ease;
+}
+.polaroid:hover .photo-del{opacity:1;}
+.photo-del:hover{background:var(--rose-deep); transform:scale(1.1);}
+.polaroid.removing{animation:noteOut .35s ease forwards;}
+.badge-new{
+  position:absolute; top:8px; left:8px; z-index:6; background:var(--gold); color:var(--plum);
+  font-size:.62rem; font-weight:800; padding:3px 8px; border-radius:20px; letter-spacing:.5px;
+  box-shadow:0 4px 10px rgba(0,0,0,.15); animation:badgePop .5s ease;
+}
+@keyframes badgePop{0%{transform:scale(0);}70%{transform:scale(1.15);}100%{transform:scale(1);}}
+
+/* ---------- hormati preferensi "reduce motion" pengguna ---------- */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  #ambient, .hero-sparkle, #sparkleLayer{display:none !important;}
+}

@@ -1,0 +1,32 @@
+/* ======================================================================
+   KONFIGURASI FOTO
+   ----------------------------------------------------------------------
+   Ini satu-satunya file yang perlu kamu edit kalau mau GANTI, TAMBAH,
+   atau HAPUS foto di galeri.
+
+   Cara ganti foto:
+   1. Taruh file foto baru di folder  img/  (format .jpg / .jpeg / .png)
+   2. Ubah nilai "src" di bawah supaya sesuai nama file foto kamu
+   3. Ubah "cap" (caption) sesuai keinginan, atau kosongkan  cap: ""
+
+   Cara tambah foto baru:
+   - Copy salah satu baris  { src: ..., cap: ... },  lalu tempel baris baru,
+     ganti src & cap-nya. Urutan di list ini = urutan tampil di galeri.
+
+   Cara hapus foto:
+   - Hapus saja baris { ... } yang tidak diinginkan.
+
+   Catatan: jumlah foto boleh berapa saja (tidak harus 8), galeri akan
+   otomatis menyesuaikan.
+   ====================================================================== */
+
+const PHOTOS = [
+  { src: "img/foto-1.jpg", cap: "senyum kamu" },
+  { src: "img/foto-2.jpg", cap: "gaya andalan" },
+  { src: "img/foto-3.jpg", cap: "ketawa lucu" },
+  { src: "img/foto-4.jpg", cap: "lagi santai" },
+  { src: "img/foto-5.jpg", cap: "di meja kerja" },
+  { src: "img/foto-6.jpg", cap: "sambil dengerin lagu" },
+  { src: "img/foto-7.jpg", cap: "candid favorit" },
+  { src: "img/foto-8.jpg", cap: "gemesin banget" },
+];

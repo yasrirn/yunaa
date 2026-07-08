@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Yuna 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,600&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="scrollProgress"></div>
+<div id="ambient"></div>
+<div id="popHearts"></div>
+<div id="sparkleLayer"></div>
+
+<!-- GATE / LAYAR PEMBUKA -->
+<div id="gate">
+  <div class="envelope" id="envelopeBtn">
+    <div class="flap"></div>
+    <div class="body-e"></div>
+    <div class="heart-seal">💌</div>
+  </div>
+  <h1>Untuk Yuna</h1>
+  <p class="script">ada sesuatu yang mau aku kasih tau...</p>
+  <button id="openBtn">Buka Suratnya</button>
+  <div class="gate-hint">nyalain suara ya biar lebih berasa 🎧</div>
+</div>
+
+<button id="musicToggle" aria-label="toggle music">
+  <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+</button>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <span class="eyebrow">YASRI & YUNA</span>
+    <h1>Hai Yuna,<br>ini buat <span>kamu</span>.</h1>
+    <p class="sub">bukan apa-apa sih, cuma kumpulan foto, kata-kata,<br>dan hal-hal kecil yang bikin aku selalu inget kamu.</p>
+    <div class="scroll-cue">scroll pelan-pelan ya<span class="arrow"></span></div>
+  </section>
+
+  <!-- ============ GALERI FOTO ============
+       Isi foto diatur di js/photos-config.js, bukan di sini. ============ -->
+  <section id="gallery">
+    <div class="sec-head reveal">
+      <span class="tag">GALERI</span>
+      <h2>Momen-momen kamu</h2>
+      <p class="script">yang paling sering bikin aku kangen</p>
+    </div>
+    <div id="gallery-grid" class="reveal"></div>
+  </section>
+
+  <!-- ============ TEMPEL FOTO KAMU ============ -->
+  <section id="photo-post">
+    <div class="sec-head reveal">
+      <span class="tag">GILIRAN KAMU</span>
+      <h2>Tempel foto kamu yang lain</h2>
+      <p class="script">biar papan kenangan ini makin rame</p>
+    </div>
+
+    <div id="uploadZone" class="reveal" tabindex="0" role="button" aria-label="unggah foto">
+      <div class="upload-icon">
+        <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true">
+          <rect x="6" y="12" width="34" height="26" rx="5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+          <circle cx="23" cy="25" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/>
+          <rect x="16" y="7" width="14" height="7" rx="2" fill="currentColor" opacity=".85"/>
+          <circle cx="34" cy="18" r="1.8" fill="currentColor"/>
+        </svg>
+      </div>
+      <p class="upload-title">klik atau seret foto ke sini</p>
+      <p class="upload-sub">JPG / PNG, otomatis dikecilin biar ringan</p>
+      <input type="file" id="fileInput" accept="image/*" hidden>
+    </div>
+
+    <div id="uploadPreview" class="upload-preview">
+      <div class="preview-frame"><img id="previewImg" alt="pratinjau foto"></div>
+      <input type="text" id="postCaption" maxlength="60" placeholder="tulis caption singkat (opsional)">
+      <div class="preview-actions">
+        <button type="button" id="cancelPostBtn" class="btn-ghost">Batal</button>
+        <button type="button" id="confirmPostBtn" class="btn-solid">Tempel Foto 📌</button>
+      </div>
+    </div>
+
+    <div id="postsWall" aria-live="polite"></div>
+    <p id="postsEmpty" class="notes-empty">belum ada foto yang ditempel, jadi yang pertama yuk 📸</p>
+  </section>
+
+  <!-- ============ SURAT ============ -->
+  <section id="letter-section">
+    <div class="sec-head reveal">
+      <span class="tag">SURAT</span>
+      <h2>Buat kamu, Yuna</h2>
+    </div>
+    <div id="letter" class="reveal">
+      <p>Hai, Yuna.</p>
+      <p>Aku udah lama pengen ngomong ini, cuma bingung mulai dari mana. soalnya aku tuh malu apalagi pas tefonan.</p>
+      <p>Sejak kenal kamu, aku ngerasa banyak hal yang berubah. Kamu tuh tanpa sadar ngajarin aku buat jadi cowok yang lebih peka, lebih sabar, dan lebih ngerti perasaan orang lain. Mungkin sekarang aku masih sering salah, masih sering bikin kamu kesel, tapi percaya deh, aku lagi belajar. Soalnya aku pengen jadi lebih baik, apalagi kalau itu buat kamu.</p>
+      <p>Jujur ya...</p>
+      <p>Aku nyaman banget sama kamu.</p>
+      <p>Sesimpel nunggu chat dari kamu, ngobrol berdua di Discord kita, denger suara kamu, atau sekadar cerita hal-hal random. Entah kenapa, itu aja udah cukup bikin hari aku jadi lebih enak.</p>
+      <p>Terus kamu tuh lucu banget.</p>
+      <p>Apalagi kalau lagi kesel atau malu terus bilang, "apasih...". Sumpah, aku nggak bohong, itu imut banget. Mungkin kamu ngerasa itu biasa aja, tapi tiap denger kamu ngomong gitu aku malah senyum sendiri.</p>
+      <p>Aku juga seneng banget sama semua momen kita.</p>
+      <p>Main Roblox, entah lagi main game gajelas yang ujung-ujungnya malah ketawa.</p>
+      <p>Main Valorant, pas aku ngerasa paling jago kalau pakai Jett, tapi aim masih sering miss kayak sabunn.</p>
+      <p>Main Mobile Legends, sambil bercanda terus. Walaupun tiap pas aku pakai Dyrroth ujung-ujungnya malah dapat cokelat, tapi anehnya tetap seru karena mainnya sama kamu.</p>
+      <p>Buat orang lain mungkin itu cuma game.</p>
+      <p>Tapi buat aku, itu kenangan. Karena yang bikin seru bukan gamenya, tapi karena aku ngejalaninnya bareng kamu.</p>
+      <p>Makasih ya, Yuna.</p>
+      <p>Makasih udah hadir di hidup aku.</p>
+      <p>Makasih udah mau nemenin aku sampai sejauh ini.</p>
+      <p>Makasih udah sabar ngadepin aku yang kadang nyebelin, keras kepala, dan masih suka nggak peka.</p>
+      <p>Semakin lama aku kenal kamu, semakin aku sadar kalau yang aku cari bukan seseorang yang sempurna.</p>
+      <p>Aku cuma pengen ada sama orang yang bikin aku nyaman, bisa jadi tempat cerita, bisa ketawa bareng, dan bikin aku selalu nunggu hari buat ngobrol lagi.</p>
+      <p>Dan orang itu... ya kamu.</p>
+      <p>Jadi, sekarang aku cuma mau nanya satu hal</p>
+      <p>Yuna...</p>
+      <p>Maukah kamu jadi pacarku?</p>
+      <p>Aku nggak bisa janji bakal jadi cowok yang sempurna.</p>
+      <p>Tapi aku janji bakal terus belajar buat jadi cowok yang lebih baik, lebih peka, lebih ngerti kamu, dan sebisa mungkin jadi alasan kamu buat senyum setiap hari.</p>
+      <p>Semoga setelah ini, kita nggak cuma jadi teman mabar, teman Discord, atau teman cerita.</p>
+      <p>Tapi... jadi kita. 🤍</p>
+      
+      <div class="signature">selalu ada buat kamu,<small>YASRI</small></div>
+    </div>
+  </section>
+
+  <!-- ============ GAMES ============ -->
+  <section id="games">
+    <div class="sec-head reveal">
+      <span class="tag">LOADOUT KITA</span>
+      <h2>Hal-hal yang bikin aku inget kamu</h2>
+      <p class="script">cuman game, tapi ini juga bagian dari kita</p>
+    </div>
+    <div class="game-grid reveal">
+      <div class="gcard valorant">
+        <div class="glow"></div>
+        <div class="art-wrap">
+          <svg viewBox="0 0 140 110" width="100%" height="100%" aria-hidden="true">
+            <circle cx="70" cy="52" r="40" fill="none" stroke="#fff" stroke-width="1.4" opacity=".22"/>
+            <!-- perisai (Sage / Sentinel) -->
+            <path d="M40 30 L58 24 L58 56 C58 70 50 78 40 82 C30 78 22 70 22 56 L22 38 Z" fill="rgba(255,255,255,.12)" stroke="#fff" stroke-width="2"/>
+            <path d="M31 55 L37 61 L50 44" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- kepulan asap (Omen / Controller) -->
+            <g opacity=".92">
+              <circle cx="98" cy="66" r="9" fill="rgba(185,166,255,.85)"/>
+              <circle cx="108" cy="58" r="12" fill="rgba(185,166,255,.6)"/>
+              <circle cx="92" cy="52" r="7" fill="rgba(185,166,255,.7)"/>
+              <circle cx="106" cy="74" r="6" fill="rgba(185,166,255,.5)"/>
+            </g>
+            <!-- crosshair -->
+            <g stroke="#FF4655" stroke-width="2" opacity=".9">
+              <line x1="70" y1="14" x2="70" y2="24"/>
+              <line x1="70" y1="80" x2="70" y2="90"/>
+              <line x1="36" y1="52" x2="46" y2="52"/>
+              <line x1="94" y1="52" x2="104" y2="52"/>
+            </g>
+          </svg>
+        </div>
+        <div class="gcard-body">
+          <span class="tagline">VALORANT</span>
+          <h3>Sage &amp; Omen</h3>
+          <p>kamu pernah bilang kalau kita mau couple, kamu pake sage aku pake omen. tapi aku belom punya woi wkkwwkwk</p>
+          <div class="agent-tags"><span>Sentinel</span><span>Controller</span></div>
+        </div>
+      </div>
+
+      <div class="gcard roblox">
+        <div class="glow"></div>
+        <div class="art-wrap">
+          <svg viewBox="0 0 140 110" width="100%" height="100%" aria-hidden="true">
+            <!-- avatar blok-blokan gaya voxel, karya orisinal (bukan logo resmi) -->
+            <g stroke="#fff" stroke-width="1.6" stroke-linejoin="round">
+              <rect x="52" y="18" width="36" height="30" rx="4" fill="rgba(255,255,255,.16)"/>
+              <rect x="60" y="26" width="7" height="7" fill="#fff"/>
+              <rect x="73" y="26" width="7" height="7" fill="#fff"/>
+              <rect x="38" y="50" width="64" height="30" rx="4" fill="rgba(255,255,255,.12)"/>
+              <rect x="26" y="54" width="14" height="22" rx="3" fill="rgba(255,255,255,.16)"/>
+              <rect x="100" y="54" width="14" height="22" rx="3" fill="rgba(255,255,255,.16)"/>
+              <rect x="46" y="82" width="16" height="20" rx="3" fill="rgba(255,255,255,.14)"/>
+              <rect x="78" y="82" width="16" height="20" rx="3" fill="rgba(255,255,255,.14)"/>
+            </g>
+            <g opacity=".7">
+              <rect x="18" y="20" width="9" height="9" fill="#fff" transform="rotate(20 22 24)"/>
+              <rect x="112" y="30" width="7" height="7" fill="#fff" transform="rotate(-15 115 33)"/>
+            </g>
+          </svg>
+        </div>
+        <div class="gcard-body">
+          <span class="tagline">ROBLOX</span>
+          <h3>Main Maps Random Gajelas</h3>
+          <p>game yang jarang aku mainin tapi semenjak sering diajak main sama kamu, jadinya suka deh</p>
+        </div>
+      </div>
+
+      <div class="gcard ml">
+        <div class="glow"></div>
+        <div class="art-wrap">
+          <svg viewBox="0 0 140 110" width="100%" height="100%" aria-hidden="true">
+            <!-- lambang segi enam + pedang bersilang, karya orisinal (bukan logo resmi) -->
+            <polygon points="70,14 100,30 100,62 70,78 40,62 40,30" fill="rgba(255,255,255,.12)" stroke="#fff" stroke-width="2"/>
+            <polygon points="70,26 90,37 90,55 70,66 50,55 50,37" fill="none" stroke="#fff" stroke-width="1.2" opacity=".5"/>
+            <g stroke="#fff" stroke-width="2.4" stroke-linecap="round">
+              <line x1="55" y1="48" x2="85" y2="34"/>
+              <line x1="55" y1="34" x2="85" y2="48"/>
+            </g>
+            <circle cx="70" cy="41" r="3.2" fill="#fff"/>
+            <g opacity=".55" stroke="#fff" stroke-width="1.4">
+              <line x1="70" y1="82" x2="70" y2="94"/>
+              <circle cx="70" cy="98" r="3" fill="#fff"/>
+            </g>
+          </svg>
+        </div>
+        <div class="gcard-body">
+          <span class="tagline">MOBILE LEGENDS</span>
+          <h3>Push rank bareng</h3>
+          <p>bisanya cuman Dyrroth sama badang, ga ngerti build, tiap dari dapet coklat mulu jir </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PENUTUP ============ -->
+  <section id="closing">
+    <span class="tag">PENUTUP</span>
+    <h2 class="reveal">Makasih udah baca sampe sini, Yuna 🤍</h2>
+    <p class="msg reveal">semoga ini bisa dikit ngasih tau seberapa berartinya kamu.<br>pencet hati di bawah ini kalo kamu juga sayang aku yaa...</p>
+    <div class="heart-btn-wrap">
+      <button id="heartBtn" class="reveal" aria-label="kirim cinta">🤍</button>
+    </div>
+    <div id="heartCount" class="reveal">0 cinta terkirim</div>
+  </section>
+
+  <!-- ============ TINGGALKAN PESAN ============ -->
+  <section id="guestbook">
+    <div class="sec-head reveal">
+      <span class="tag">CATATAN KITA</span>
+      <h2>Tinggalkan pesan</h2>
+      <p class="script">tulis apa aja, nggak perlu mikir panjang</p>
+    </div>
+
+    <form id="messageForm" class="reveal" autocomplete="off">
+      <div class="field-row">
+        <input type="text" id="msgName" maxlength="24" placeholder="Nama kamu (boleh kosong)">
+      </div>
+      <div class="field-row">
+        <textarea id="msgText" maxlength="220" rows="3" placeholder="Tulis pesan buat Yasri di sini..." required></textarea>
+        <span id="msgCounter" class="counter">0/220</span>
+      </div>
+      <button type="submit" id="msgSubmit">
+        <span class="btn-label">Tempel Pesan</span>
+        <span class="btn-icon">💌</span>
+      </button>
+    </form>
+
+    <div id="notesWall" aria-live="polite"></div>
+    <p id="notesEmpty" class="notes-empty">belum ada pesan, jadi yang pertama yuk 🤍</p>
+  </section>
+
+  <footer>
+    dibuat dengan sepenuh hati untuk Yuna
+    <span class="from">— Yasri</span>
+  </footer>
+
+</main>
+
+<div id="lightbox">
+  <span class="close-lb">&times;</span>
+  <img src="" alt="">
+</div>
+
+<!-- urutan penting: config foto dulu -> script utama -> fitur tambahan
+     (messages.js & photo-post.js memakai fungsi suara dari script.js) -->
+<script src="js/photos-config.js"></script>
+<script src="js/script.js"></script>
+<!-- Firebase: dipakai supaya buku tamu sinkron ke semua pengunjung. Isi js/firebase-config.js dulu -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/messages.js"></script>
+<script src="js/photo-post.js"></script>
+</body>
+</html>
