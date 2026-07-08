@@ -21,12 +21,12 @@
    ====================================================================== */
 
 const PHOTOS = [
-  { src: "img/foto-1.jpg", cap:  },
-  { src: "img/foto-2.jpg", cap:  },
-  { src: "img/foto-3.jpg", cap:  },
-  { src: "img/foto-4.jpg", cap:  },
-  { src: "img/foto-5.jpg", cap:  },
-  { src: "img/foto-6.jpg", cap:  },
-  { src: "img/foto-7.jpg", cap:  },
-  { src: "img/foto-8.jpg", cap:  },
+  { src: "img/foto-1.jpg", },
+  { src: "img/foto-2.jpg", },
+  { src: "img/foto-3.jpg", },
+  { src: "img/foto-4.jpg", },
+  { src: "img/foto-5.jpg", },
+  { src: "img/foto-6.jpg", },
+  { src: "img/foto-7.jpg", },
+  { src: "img/foto-8.jpg", },
 ];
