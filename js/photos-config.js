@@ -21,12 +21,12 @@
    ====================================================================== */
 
 const PHOTOS = [
-  { src: "img/foto-1.jpg", cap: "senyum kamu" },
-  { src: "img/foto-2.jpg", cap: "gaya andalan" },
-  { src: "img/foto-3.jpg", cap: "ketawa lucu" },
-  { src: "img/foto-4.jpg", cap: "lagi santai" },
-  { src: "img/foto-5.jpg", cap: "di meja kerja" },
-  { src: "img/foto-6.jpg", cap: "sambil dengerin lagu" },
-  { src: "img/foto-7.jpg", cap: "candid favorit" },
-  { src: "img/foto-8.jpg", cap: "gemesin banget" },
+  { src: "img/foto-1.jpg", cap:  },
+  { src: "img/foto-2.jpg", cap:  },
+  { src: "img/foto-3.jpg", cap:  },
+  { src: "img/foto-4.jpg", cap:  },
+  { src: "img/foto-5.jpg", cap:  },
+  { src: "img/foto-6.jpg", cap:  },
+  { src: "img/foto-7.jpg", cap:  },
+  { src: "img/foto-8.jpg", cap:  },
 ];
